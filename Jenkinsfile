@@ -4,13 +4,13 @@ pipeline {
         maven 'M2_HOME'
     }
     environment {
-        registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/geolocation_ecr_rep'
+        registry = '941845110425.dkr.ecr.us-east-1.amazonaws.com/geolocation_ecr_rep'
         dockerimage = '' 
     }
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/Hermann90/geolocation.git'
+                git branch: 'main', url: 'https://github.com/catherinefomijang/geo_app.git'
             }
         }
         stage('Code Build') {
@@ -36,7 +36,7 @@ pipeline {
             steps{
                 script {
                     sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 076892551558.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker push 076892551558.dkr.ecr.us-east-1.amazonaws.com/geolocation_ecr_rep:latest'
+                    sh 'docker push 941845110425.dkr.ecr.us-east-1.amazonaws.com/geolocation_ecr_rep:latest'
                 }
             }
         }
